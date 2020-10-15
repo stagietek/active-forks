@@ -13,7 +13,7 @@ Extended Features:
 
 [Find Active Fork](https://ridvanaltun.github.io/active-forks)
 
-![Screenshot](screenshot.png "Active Forks in Action")
+![Screenshot](docs/screenshot.png "Active Forks in Action")
 
 ## Optimizations
 
@@ -36,3 +36,11 @@ and it'll bring up the Active Forks of that repo.
 ```javascript
 javascript:var title=document.title;if(title){  thing=title.split(':');var newPage = 'https://ridvanaltun.github.io/active-forks#'+thing[0];open(newPage ,'targetname')}
 ```
+
+## As Extension
+
+You can use this tool with the web extension (for Firefox, Chrome or Edge).
+
+[Check Extension Page!](https://github.com/ridvanaltun/active-forks-extension)
+
+![Extension](docs/extension.png "Active Forks Extension")
