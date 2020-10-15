@@ -33,6 +33,8 @@ function fetchData() {
   }
   Runner.start();
 
+  hideMsg()
+
   const repo = document.getElementById('q').value;
   const re = /[-_\w]+\/[-_.\w]+/;
 
@@ -64,8 +66,8 @@ function updateDT(data) {
   // Format dataset and redraw DataTable. Use second index for key name
   const forks = [];
   for (let fork of data) {
-    fork.repoLink = `<a href="https://github.com/${fork.full_name}">Link</a>`;
-    fork.ownerName = fork.owner.login;
+    fork.ownerName = `<a href="https://github.com/${fork.owner.login}">${fork.owner.login}</a>`;
+    fork.name = `<a href="https://github.com/${fork.full_name}">${fork.name}</a>`;
     forks.push(fork);
   }
   const dataSet = forks.map(fork =>
@@ -81,7 +83,6 @@ function initDT() {
   // Create ordered Object with column name and mapped display name
   window.columnNamesMap = [
     // [ 'Repository', 'full_name' ],
-    ['Link', 'repoLink'], // custom key
     ['Owner', 'ownerName'], // custom key
     ['Name', 'name'],
     ['Branch', 'default_branch'],
@@ -111,7 +112,7 @@ function initDT() {
 
             case 'pushed_at':
               return type === 'display'
-                ? moment(data).format('YYYY-MM-DD')
+                ? moment(data).fromNow()
                 : data;
 
             case 'diff_from_original':
@@ -127,8 +128,9 @@ function initDT() {
       };
     }),
     columnDefs: [
-      { className: 'dt-right', targets: [4, 5, 6, 7, 9, 10] }, // numbers
-      { width: '120px', targets: 8 }, // date
+      { className: 'dt-right', targets: [3, 4, 7, 8, 9] }, // numbers
+      { className: 'dt-center', targets: [2, 5, 6] }, // numbers
+      { width: '120px', targets: 7 }, // date
     ],
     order: [[sortColumnIdx, 'desc']],
     createdRow: function(row, _, index) {
@@ -195,6 +197,10 @@ async function fetchAndShow(repo) {
   }
 }
 
+function hideMsg() {
+  document.getElementById('data-body').style.display= 'none';
+}
+
 function showMsg(msg, type) {
   let alert_type = 'alert-info';
 
@@ -204,6 +210,7 @@ function showMsg(msg, type) {
 
   document.getElementById('footer').innerHTML = '';
 
+  document.getElementById('data-body').style.display= 'block';
   document.getElementById('data-body').innerHTML = `
         <div class="alert ${alert_type} alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

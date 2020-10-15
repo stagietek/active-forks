@@ -1,15 +1,19 @@
-# active-forks
+# Active Forks
 
 > Find the active github forks of a project
 
 This project allows you to find the most active forks of a repository.
 
-I added a couple of features useful to compare forks:
-* works after providing a **personal GitHub token**. It is used only to increase the limits to query to API. The token is stored in Local Storage only, not sent anywhere except for the GitHub API.
-* include the **original repository** in the list, marked in bold
-* after expanding **Options**, it is possible to increase the **maximum amount of forks** to retrieve and to utilize some kind of caching
-* retrieve **commits of each fork** and show the differences
-* click on box in the **Diff** column to see the commits
+Extended Features:
+* Works after providing a **personal GitHub token**. It is used only to increase the limits to query to API. The token is stored in Local Storage only, not sent anywhere except for the GitHub API.
+* Include the **original repository** in the list, marked in bold.
+* After expanding **Options**, it is possible to increase the **maximum amount of forks** to retrieve and to utilize some kind of caching.
+* Retrieve **commits of each fork** and show the differences.
+* Click on box in the **Diff** column to see the commits.
+
+[Find Active Fork](https://ridvanaltun.github.io/active-forks)
+
+![Screenshot](screenshot.png "Active Forks in Action")
 
 ## Optimizations
 
@@ -19,7 +23,16 @@ Because this version retrieves commits from every fork which is slow and uses yo
 If both are selected, both conditions have to be satisfied at the same time.
 If the condition is satisfied, commits for the second fork are not retrieved but assumed to be the same as in the first fork.
 
+## As Bookmarklet
 
-[Find Active Fork](https://lukasznojek.com/projects/active-github-forks/)
+If you would like to use this tool as a bookmarklet,
+you can do so by saving the following javascript code as the bookmarklet.
+Since Github doesn't allow javascript in its markdown, you can add it manually.
+Hit `Ctrl+D` to create a new bookmark and paste the javascript below into the URL
+or "Location" entry (you may have to click "More" to see the URL field).
+Any time you're on a Github repo you can click the bookmarklet
+and it'll bring up the Active Forks of that repo.
 
-![Screenshot](screenshot.png "Active Forks in Action")
+```javascript
+javascript:var title=document.title;if(title){  thing=title.split(':');var newPage = 'https://ridvanaltun.github.io/active-forks#'+thing[0];open(newPage ,'targetname')}
+```
