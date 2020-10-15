@@ -1,5 +1,6 @@
 window.addEventListener('load', () => {
   initDT(); // Initialize the DatatTable and window.columnNames variables
+  addDarkmodeWidget();
 
   Options.loadAndShow();
 
@@ -23,6 +24,10 @@ document.getElementById('form').addEventListener('submit', e => {
   e.preventDefault();
   fetchData();
 });
+
+function addDarkmodeWidget() {
+  new Darkmode( { label: '🌓' } ).showWidget();
+}
 
 let running = false;
 

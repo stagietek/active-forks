@@ -24,6 +24,9 @@ body {
 .original-repo td {
     font-weight: bold;
 }
+.darkmode-layer, .darkmode-toggle {
+    z-index: 500;
+}
 #data-body {
     display: none;
     padding-bottom: 15px;
