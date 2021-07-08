@@ -288,8 +288,10 @@ async function fetchMoreDir(repo, originalBranch, fork, fromOriginal, api) {
   });
   const data = await api.fetch(url, limiter);
 
-  if (fromOriginal) fork.diff_from_original = printInfo('-', data, fork);
-  else fork.diff_to_original = printInfo('+', data, fork);
+  if (data !== null) {
+    if (fromOriginal) fork.diff_from_original = printInfo('-', data, fork);
+    else fork.diff_to_original = printInfo('+', data, fork);
+  }
 }
 
 function printInfo(sep, data, fork) {
@@ -382,6 +384,7 @@ function Api(token) {
       const { cached, newConfig } = cache.get(url, config);
       const response = await fetch(url, newConfig);
       if (response.status === 304) return cached.data;
+      if (response.status === 404) return null;
       if (!response.ok) throw Error(response.statusText);
 
       updateRate(response);
