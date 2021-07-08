@@ -43,4 +43,4 @@ You can use this tool with the web extension (for Firefox, Chrome or Edge).
 
 [Check Extension Page!](https://github.com/ridvanaltun/active-forks-extension)
 
-![Extension](docs/extension.png "Active Forks Extension")
+![Extension](docs/extension.jpg "Active Forks Extension")
